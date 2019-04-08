@@ -1,0 +1,47 @@
+.form-element {
+    text-align: left;
+}
+
+.form-element h5 {
+    font-weight: 600;
+    padding: 12px;
+}
+
+.form-element label {
+    font-weight: 600;
+}
+
+.form-element input {
+    margin: auto 12px;
+    height: inherit;
+    float: left;
+    border: 0px;
+    outline: 0px;
+    border-bottom: 2px solid black;
+}
+
+.form-element textarea {
+    margin: auto 12px;
+    height: inherit;
+    min-height: 10rem;
+    float: left;
+    border: 1px solid black;
+}
+
+.form-element input:focus {
+    border: none;
+    outline: none;
+}
+
+.form-element .form-group {
+    margin: 12px auto;
+}
+
+.form-element .btn {
+    margin: 12px;
+}
+
+.form-element .form-horizontal{
+    margin-left: 12rem;
+    margin-right: 12rem;
+}

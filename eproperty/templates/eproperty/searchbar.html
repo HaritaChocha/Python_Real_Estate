@@ -1,0 +1,9 @@
+<div class="card searchbar container">
+    <div class="card-body">
+        <form method="GET" action="{% url 'eproperty:search' %}" class="mb-0">
+            <input type="text" class="form-input" name="q" value="{{request.GET.q}}" placeholder="Enter Keyword (Eg. Name, Type, City etc.)">
+            <button type="submit" class="search-btn">Search</button>
+            <a id="advancedSearch" class="float-left" style="color: var(--main-primary)" href="{% url 'eproperty:property' %}">Advanced Search</a>
+        </form>
+    </div>
+</div>

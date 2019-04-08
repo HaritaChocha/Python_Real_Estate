@@ -1,0 +1,95 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'eproperty/css/detail.css' %}">
+{% endblock%}
+
+{% block title %}{{property.propertyTitle}}{% endblock %}
+
+{% block activeProperty %}active{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid detail px-5">
+    <!-- Edit Buttons -->
+    {% if user.is_authenticated and user.is_active or user.is_admin %}
+        <div class="text-left m-3">
+            <a href="{% url 'eproperty:addImage' property.propertyID %}" class="m-1 btn btn-dark"> <i class="fas fa-file-upload px-2"></i> Add new images </a>
+            <a href="{% url 'eproperty:updateProperty' property.propertyID %}" class="m-1 btn btn-dark"> <i class="fas fa-pencil-alt px-2"></i> Update the post </a>
+            <a href="{% url 'eproperty:deleteProperty' property.propertyID %}" class="m-1 btn btn-danger delete-confirm"> <i class="fas fa-trash-alt px-2"></i> Delete this post </a>
+        </div>
+    {% endif %}
+    
+    <!-- Property Information -->
+    <div class="row my-5">
+        
+        <div class="col-lg-6">
+            <!-- Property Images -->
+            {% if property_images %}
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for images in property_images %}
+                            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                                <img class="d-block w-100" src="{{ images.propertyImage.url }}" alt="Slides">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            {% else %}
+                <img class="img-fluid" src="{% static 'eproperty/images/no-image.png' %}" alt="image cap">
+            {% endif %}
+        </div>
+
+        <!-- Property Description -->
+        <div class="col-lg-6">
+            <div>
+                <h2>{{ property.propertyName }}</h2>
+                {% if property.propertySellingType == 'Sell' %}
+                    <span class="property-badge badge badge-pill badge-primary">{{property.propertySellingType}}</span>
+                {% elif property.propertySellingType == 'Buy' %}
+                    <span class="property-badge badge badge-pill badge-danger">{{property.propertySellingType}}</span>
+                {% else %}
+                    <span class="property-badge badge badge-pill badge-info">{{property.propertySellingType}}</span>
+                {% endif %}
+
+                <h5><span class="heading">Category:</span>  {{ property.propertyCategory }}</h5>
+                
+                {% if property.propertySellingType == 'Rent' %}
+                    <h5><span class="heading">Price:</span>  ${{ property.propertySellingPrice }} per month</h5>
+                {% else %}
+                    <h5><span class="heading">Price:</span>  ${{ property.propertySellingPrice }}</h5>
+                {% endif %}
+            </div>
+
+            <div>
+                <ul>
+                    <li><span class="heading">Property Sector:</span>  {{property.propertySector}}</li>
+                    <li><span class="heading">Facing Direction:</span>  {{property.PropertyDirection}}</li>
+                    <li><span class="heading">Construction Date:</span>  {{property.propertyConstructionDate}}</li>
+                    <li><span class="heading">Address:</span>  {{property.address}}</li>
+                    <li><span class="heading">Number of Halls:</span>  {{property.propertyNoOfHalls}}</li>
+                    <li><span class="heading">Number of Rooms:</span>  {{property.propertyNoOfRooms}}</li>
+                    <li><span class="heading">Number of Bathrooms:</span>  {{property.propertyNoOfBathrooms}}</li>
+                    <li><span class="heading">Number of Floors:</span>  {{property.propertyNoOfFloors}}</li>
+                    <li><span class="heading">Area:</span>  {{property.propertyTotalArea}} sq/feet</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-left"><span class="heading">Description:</span>  {{ property.propertyDescription }}</h5>
+            </div>
+            <a href="#" class="contact-advertiser m-3 btn btn-dark"> <i class="fas fa-envelope-open px-2"></i> Contact the Advertiser </a>
+            <a href="mailto:{{property.user.email}}" id="advertiser-phone" class="m-3 btn btn-light d-none"> {{property.user.email}} </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

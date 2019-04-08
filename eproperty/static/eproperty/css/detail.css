@@ -1,0 +1,33 @@
+.detail {
+    margin-top: 40px
+}
+
+.detail h2 {
+    font-weight: 600;
+}
+
+.detail h5 {
+    margin: 8px;
+}
+
+.detail-link {
+    margin: 8px;
+}
+
+.detail .heading {
+    font-weight: 600;
+    margin: 8px;
+}
+
+.detail ul {
+    margin: 2rem;
+}
+
+.detail li {
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.property-badge {
+    font-size: 1.2rem;
+}

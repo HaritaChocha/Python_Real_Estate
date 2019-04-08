@@ -1,0 +1,38 @@
+.home {
+    width: 100%;
+}
+
+.home-img {
+    background: url('../images/home-1.jpg');
+
+    /* Full height */
+    height: 60%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Categories */
+.home .home-category h3 {
+    margin: 2rem auto;
+}
+
+.home-category a {
+    color: black;
+}
+
+.property-list {
+    padding: 12px;
+    font-size: 1.2rem;
+}
+
+.property-list a {
+    color: black;
+}
+
+.property-list a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}

@@ -1,0 +1,22 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+
+<!-- CSS Files -->
+{% block css%}
+    <link rel="stylesheet" href="{% static 'eproperty/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'eproperty/css/searchbar.css' %}">
+{% endblock%}
+
+<!-- Title -->
+{% block title %}Home Hunt{% endblock %}
+
+<!-- Content -->
+{% block content %}
+    <div class="home">
+        <div class="home-img">
+            <!-- Search Bar -->
+            {% include "eproperty/searchbar.html" %}
+        </div>
+    </div>
+{% endblock %}

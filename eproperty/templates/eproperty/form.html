@@ -1,0 +1,59 @@
+{% extends "eproperty/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{source}}{% endblock %}
+
+{% block activeAdvertise %}active{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'eproperty/css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{source}}</h2>
+    <h5>Please enter required details</h5>
+
+    <div class="my-5 form-element">
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-wrapper row">
+                {% if form %}
+
+                    {% for error in form.non_field_errors %}
+                        <span class="text-danger">{{ errors }}</span>
+                    {% endfor %}
+                
+                    {% for field in form %}
+                        {% comment %} {% if field.label == 'PropertyDescription' %}
+                            <div class="fieldWrapper text-left field-description ">
+                        {% else %}
+                            <div class="fieldWrapper col-md-6 text-left">
+                        {% endif %} {% endcomment %}
+                            <div class="fieldWrapper col-md-6 text-left">
+                                <label class="mt-3" for="nameInput">{{field.label}}</label>
+                                {{field}}
+                                <span class="text-danger">{{ field.errors }}</span>
+                            </div>
+                    {% endfor %}
+                {% endif %}
+                
+                {% if property_image_form %}
+                    {{ property_image_form.non_field_errors }}
+                    {% for field in property_image_form %}
+                        <div class="fieldWrapper">
+                            {{ field.errors }}
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endfor %}        
+                {% endif %}
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <a href="{% url 'eproperty:property' %}"><button class="btn btn-danger" type="submit">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

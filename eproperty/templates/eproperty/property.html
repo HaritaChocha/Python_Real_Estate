@@ -1,0 +1,211 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+<!-- CSS -->
+{% block css%}
+    <link rel="stylesheet" href="{% static 'eproperty/css/searchbar.css' %}">
+    <link rel="stylesheet" href="{% static 'eproperty/css/property.css' %}">
+{% endblock%}
+
+{% block title %}Properties{% endblock %}
+
+{% if source %}
+    {% block activeMyProperty %}active{% endblock %}
+{% else %}
+    {% block activeProperty %}active{% endblock %}
+{% endif %}
+
+{% block content %}
+<div class="container-fluid property mb-5">
+    <h2>Your search ends here</h2>
+
+    <!-- Search Bar -->
+    {% include "eproperty/searchbar.html" %}
+    
+    <div>
+        <div class="row">
+            <!-- Filter -->
+            <div class="col-lg-3 col-md-6 col-sm-12 .d-sm-none .d-md-block">
+                <div class="card filter-card">
+                    <div class="card-body">
+                        <h4 class="card-title">Apply Filter</h5>
+                        <h6 class="card-subtitle mb-3 text-muted">We will help you find your perfect house</h6>
+
+                        <!-- Sort -->
+                        <div class="filter-pills">
+                            <a href="{% url 'eproperty:sortProperty' 'name' %}" class="badge badge-pill badge-primary">Sort by name</a>
+                            <a href="{% url 'eproperty:sortProperty' 'price' %}" class="badge badge-pill badge-primary">Sort by Price</a>
+                            <a href="{% url 'eproperty:sortProperty' 'date' %}" class="badge badge-pill badge-primary">Sort by Date</a>
+                        </div>
+
+                        <form method="GET" action="{% url 'eproperty:filter' %}">
+
+                            <!-- Category -->
+                            <h6 class="card-sub-heading my-2">Property Category</h6>
+                            <div class="row">
+                                {% for category in categories %}
+                                    <div class="form-check col-sm-6">
+                                        <input class="form-check-input" type="checkbox" name="category" value="{{category}}" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            {{category}}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <hr>
+
+                            <!-- Sector -->
+                            <h6 class="card-sub-heading my-2">Property Sector</h6>
+                            <div class="row">
+                                {% for sector in sectors %}
+                                    <div class="form-check col-sm-6">
+                                        <input class="form-check-input" type="checkbox" name="sector"  value="{{sector}}" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            {{sector}}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <hr>
+
+                            <!-- Location -->
+                            <h6 class="card-sub-heading my-2">Location</h6>
+                            <input type="text" class="form-input mb-2" style="width: 100%; margin: auto auto"
+                                    name="location" value="{{request.GET.location}}" placeholder="Enter City, Country or Province">
+                            <hr>
+
+                            <!-- Miscellenous -->
+                            <h6 class="card-sub-heading my-2">Miscellenous</h6>
+
+                            <div class="m-3 text-left">
+                                <span class="pr-3">Rooms:</span>
+
+                                {% for num in "x"|ljust:"4" %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="roomCheckbox1" name="room" value="{{forloop.counter}}">
+                                        <label class="form-check-label" for="roomCheckbox1">{{forloop.counter}}</label>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="m-3 text-left">
+                                <span class="pr-3">Halls:</span>
+
+                                {% for num in "x"|ljust:"3" %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="hallCheckbox1" name="hall" value="{{forloop.counter}}">
+                                        <label class="form-check-label" for="hallCheckbox1">{{forloop.counter}}</label>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="m-3 text-left">
+                                <span class="pr-3">Bathrooms:</span>
+
+                                {% for num in "x"|ljust:"3" %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="bathCheckbox1" name="bathroom" value="{{forloop.counter}}">
+                                        <label class="form-check-label" for="hallCheckbox1">{{forloop.counter}}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            
+                            <hr>
+
+                            <!-- Price -->
+                            <h6 class="card-sub-heading my-2">Price</h6>
+                            <div class="filter-price">
+                                <span>From</span> 
+                                <input type="text" class="form-input mb-2" 
+                                    name="minprice" value="{{request.GET.minprice}}" style="width: 40%; margin: auto 4px">
+                            </div>
+                            <div class="filter-price">
+                                <span>To</span> 
+                                <input type="text" class="form-input mb-2" 
+                                    name="maxprice" value="{{request.GET.maxprice}}" style="width: 40%; margin: auto 4px">
+                            </div>
+                            <hr>
+                            <button type="submit" class="m-5 btn btn-primary">Search</button>
+                            <a href="{% url 'eproperty:property' %}" class="m-5 text-dark btn btn-warning">Clear Filter</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Properties -->
+            <div class="col-lg-9 col-md-6 col-sm-12">
+                {% if properties %}
+                <div class="row">
+                {% for property in properties %}
+                    <div class="col-xl-4 col-lg-6 text-center">
+                        <div class="card property-card">
+                            {% if property.propertyImage %}
+                                <img class="card-img-top property-card-img" src="{{ property.propertyImage.url }}" alt="Card image cap">
+                            {% else %}
+                                <img class="card-img-top property-card-img" src="{% static 'myapp/images/no-image.png' %}" alt="Card image cap">
+                            {% endif %}
+                            <div class="card-body">
+                                <h4 class="card-title property-card-title mb-1">{{property}}
+                                    {% if property.propertySellingType == 'Sell' %}
+                                        <span class="badge badge-pill badge-primary">{{property.propertySellingType}}</span>
+                                    {% elif property.propertySellingType == 'Buy' %}
+                                        <span class="badge badge-pill badge-danger">{{property.propertySellingType}}</span>
+                                    {% else %}
+                                        <span class="badge badge-pill badge-info">{{property.propertySellingType}}</span>
+                                    {% endif %}
+                                </h4>
+                                <h6 class="card-text mb-2">{{property.propertyCategory}}</h6>
+                                <div class="text-left">
+                                    <span class="my-2 font-weight-bold d-block"><i class="property-card-icon px-2 fas fa-home"></i>{{property.propertyNoOfRooms}} Rooms </span>
+                                    <span class="my-2 font-weight-bold d-block"><i class="property-card-icon px-2 fas fa-tv"></i>{{property.propertyNoOfHalls}} Hall </span>
+                                    <span class="my-2 font-weight-bold d-block"><i class="property-card-icon px-2 fas fa-bath"></i>{{property.propertyNoOfBathrooms}} Bathroom </span>
+                                    <span class="my-2 font-weight-bold d-block"><i class="property-card-icon px-2 fas fa-angle-double-up"></i>{{property.propertyNoOfFloors}} Floors </span>
+                                </div>
+                                <div>
+                                    {% if property.propertySellingType == 'Rent' %}
+                                        <span class="price-badge badge badge-info d-block">${{property.propertySellingPrice}} per month</span>
+                                    {% else %}
+                                        <span class="price-badge badge badge-info d-block">${{property.propertySellingPrice}}</span>
+                                    {% endif %}
+                                    <a href="{% url 'eproperty:propertyDetail' property.propertyID %}" class="btn btn-dark my-3"><i class="fas fa-info-circle"></i> More Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+
+                {%if properties.paginator.num_pages != 1 %}
+                    <div class="pagination">
+
+                        <div class="current">Page {{ properties.number }} of {{ properties.paginator.num_pages }}.</div>
+                        
+                        <span class="step-links">
+                            {% if properties.has_previous %}
+                                <a href="?page=1" class="btn btn-dark"><i class="fas fa-angle-double-left"></i> First</a>
+                                <a href="?page={{ properties.previous_page_number }} " class="btn btn-dark"> <i class="fas fa-arrow-left"></i> Previous</a>
+                            {% endif %}
+
+                            {% if properties.has_next %}
+                                <a href="?page={{ properties.next_page_number }}" class="btn btn-dark">Next <i class="fas fa-arrow-right"></i></a>
+                                <a href="?page={{ properties.paginator.num_pages }}" class="btn btn-dark">Last <i class="fas fa-angle-double-right"></i></a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+
+                {% else %}
+                    <h4>No Property Found :(</h4>
+                {% endif %}
+            </div>
+            
+            <div>
+            </div> 
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

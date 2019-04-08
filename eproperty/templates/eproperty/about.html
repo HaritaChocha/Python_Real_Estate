@@ -1,0 +1,92 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+{% block css%}
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'eproperty/css/about.css' %}">
+{% endblock%}
+
+{% block title %}About Us{% endblock %}
+
+{% block activeAbout %}active{% endblock %}
+
+{% block content %}
+    <div class="container about text-center">
+        <h2 class="heading">Something About Us</h2>
+
+        <p id="about-para">
+            Our Real Estate system maintains all the property information online. The system identifies and stores several types of 
+            property information. We provide a quick and easy way to search property information and anyone can search for a specific 
+            property.
+        </p>
+
+        <img class="img-fluid" style="height: 90%" src="{% static 'eproperty/images/about-1.jpg' %}" alt="about-page">
+
+
+        <h4>Our Team</h4>
+        
+        <div class="">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarang Chikhalia</h5>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Univesity of Windsor</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Master of Applied Computing</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><a class="link" href="mailto:chikhalt@uwindsor.ca">chikhalt@uwindsor.ca</a></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Student ID</strong>: 104919206</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Harita Chocha</h5>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Univesity of Windsor</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Master of Applied Computing</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><a class="link" href="mailto:chocha@uwindsor.ca">chocha@uwindsor.ca</a></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Student ID</strong>: 104841615</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Yash Mistry</h5>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Univesity of Windsor</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Master of Applied Computing</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><a class="link" href="mailto:mistr11k@uwindsor.ca">mistr11k@uwindsor.ca</a></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Student ID</strong>: 104913862 </h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Ayushi Shah</h5>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Univesity of Windsor</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Master of Applied Computing</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><a class="link" href="mailto:shah17a@uwindsor.ca">shah17a@uwindsor.ca</a></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Student ID</strong>: 104908709</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Jenith Lalseta</h5>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Univesity of Windsor</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Master of Applied Computing</strong></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><a class="link" href="mailto:lalseta@uwindsor.ca">lalseta@uwindsor.ca</a></h6>
+                        <h6 class="card-subtitle mb-3 text-muted"><strong>Student ID</strong>: 104759792</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static '/accounts/css/activation.css' %}">
+{% endblock%}
+
+{% block title %}Activation{% endblock %}
+
+{% block content %}
+
+<div class="container activation p-3">
+    <div class="my-5 d-block">
+        <div>
+            <div>
+                <h2>New Registrations</h2>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if user_list %}
+                        {% for user in user_list%}
+                            <tr>
+                                <th scope="row">{{forloop.counter0}}</th>
+                                <td>{{user.username}}</td>
+                                <td>{{user.email}}</td>
+                                <td><a href="{% url 'accounts:activateUser' user.username %}">Activate</a></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <span class="py-2 text-danger">No Pending activations</span>
+                    {% endif %}
+                </tbody>                
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

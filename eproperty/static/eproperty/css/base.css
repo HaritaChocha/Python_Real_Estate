@@ -1,0 +1,66 @@
+:root {
+    --main-primary: #039be5;
+    --main-error: #ef5350;
+    --font-color: black;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Navigation */
+
+.navbar {
+    background-color: transparent
+}
+
+.navbar .navbar-brand {
+    font-size: 1.3rem;
+    margin: auto 16px;
+    font-weight: 600;
+    padding: 8px;
+    color: var(--font-color);
+    border: 2px solid var(--font-color);
+}
+
+.navbar a {
+    color: var(--font-color);
+    font-size: 1.1rem;
+    padding: 8px;
+}
+
+.navbar a:hover, .active {
+    text-decoration: none;
+    color: var(--font-color);
+    font-weight: 600;
+}
+
+/* Dropdown */
+
+/* Footer */
+
+footer {
+    background: #eeeeee;
+    padding: 20px;
+}
+
+footer div:first-child {
+    padding: 4px;
+}
+
+.footer-icons {
+    margin: auto 8px;
+    font-size: 1.2rem;
+}
+
+/* Content */
+.content {
+    margin-top: 4rem;
+}

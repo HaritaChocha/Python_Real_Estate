@@ -1,0 +1,32 @@
+.searchbar {
+    margin: 60px auto;
+}
+
+.card {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 8px;
+}
+
+.form-input {
+    margin: auto 12px;
+    width: 80%;
+    height: inherit;
+    float: left;
+    border: 0px;
+    outline: 0px;
+    border-bottom: 2px solid black;
+}
+
+.search-btn {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 0px;
+    padding: 6px;
+}
+
+.search-btn:hover {
+    border: 1px solid var(--main-primary);
+    color: var(--main-primary)
+}

@@ -1,0 +1,13 @@
+.contact h2 {
+    font-weight: 600;
+    padding-bottom: 4rem;
+}
+
+.contact-frame {
+    width: 90%;
+    padding-bottom: 2rem;
+}
+
+.contact .contact-icon {
+    font-size: 2.5rem;
+}

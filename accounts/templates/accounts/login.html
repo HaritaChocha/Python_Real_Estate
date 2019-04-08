@@ -1,0 +1,46 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'eproperty/css/form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<h2>Login</h2>
+    <h5 style="font-style: italic">
+    {% if message %}
+            <span class="text-danger">{{ message }}</span>
+        {% endif %}
+    </h5>
+<div id="login" class="form-element">
+
+
+        <form class="form-horizontal" name="LoginForm" action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        {% if next %}
+            <input type="hidden" class="form-control" name="next" value="{{ next }}" />
+        {% endif %}
+        <div class="control-group">
+            <label class="control-label" for="username">Username</label>
+            <div class="controls">
+                <input type="text" class="form-control" id="username" name="username"  placeholder="Username">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+        </form>
+    </div>
+<span>New User? <a href="{% url 'accounts:register' %}"> Register </a></span>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'eproperty/css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3 style="font-style: italic; text-align: center">Thank You for registration. An email will be sent to you shortly with username and password after approval from admin.</h3>
+
+        <div class="control-group">
+                <div class="controls">
+                    <a href="{% url 'eproperty:home' %}" class="my-5 btn btn-dark">Click here to go to Home Page</a>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}

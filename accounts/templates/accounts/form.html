@@ -1,0 +1,44 @@
+{% extends "eproperty/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{source}}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'eproperty/css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{source}}</h2>
+    <h5>Please enter required details</h5>
+
+    <div class="my-5 form-element">
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-wrapper row">
+                {% if form %}
+
+                    {% for error in form.non_field_errors %}
+                        <span class="text-danger">{{ errors }}</span>
+                    {% endfor %}
+                
+                    {% for field in form %}
+                        <div class="fieldWrapper col-md-12 text-left">
+                            <label class="mt-3" for="nameInput">{{field.label}}</label>
+                            {{field}}
+                            <span class="text-danger">{{ field.errors }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="text-center m-2">
+        <a href="{% url 'eproperty:property' %}"><button class="btn btn-danger" type="submit">Cancel</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

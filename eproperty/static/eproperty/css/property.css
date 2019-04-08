@@ -1,0 +1,57 @@
+.container-fluid {
+    padding-left: 2rem;
+    padding-right: 2rem; 
+}
+
+.property h2 {
+    font-weight: 600;
+    padding-bottom: 2.5rem;
+}
+
+/* Filter */
+.filter-card {
+    width: inherit;
+}
+
+.card-title, .card-sub-heading {
+    font-weight: 600;
+    padding: 8px;
+}
+
+.filter-card .filter-pills a {
+    font-size: 1.1rem;
+    margin: 4px;
+}
+
+.form-check {
+    text-align: left;
+}
+
+.filter-price {
+    width: 100%;
+    margin: auto auto;
+}
+
+.filter-price span {
+    float: left;
+}
+
+/* Property Card */
+.property-card {
+    max-width: 22rem;
+    min-height: 24rem;
+    margin: 12px
+} 
+
+.property-card .property-card-img {
+    width: inherit;
+    height: 14rem;
+}
+
+.property-card-title {
+    font-size: 1.3rem;
+}
+
+.price-badge {
+    font-size: 1.2rem;
+}

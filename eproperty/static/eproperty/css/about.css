@@ -1,0 +1,37 @@
+.about h2 {
+    font-weight: 600;
+    padding-bottom: 4rem;
+}
+
+.about h4 {
+    font-weight: 600;
+    padding-bottom: 2.5rem;
+}
+
+.about .responsive-img {
+    height: 80%;
+}
+
+.about #about-para {
+    text-align: justify;
+    font-size: 1.2rem;
+}
+
+.img-fluid {
+    margin: 2.5rem auto;
+}
+
+/* Cards */
+.card {
+    margin: 2rem;
+}
+
+.card-title {
+    font-weight: 600;
+    padding: 4px;
+}
+
+.link:hover {
+    text-decoration: none;
+    font-weight: 600;
+}

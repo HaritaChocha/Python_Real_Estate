@@ -1,0 +1,36 @@
+{% extends "eproperty/base.html" %}
+{% load staticfiles %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'eproperty/css/detail.css' %}">
+{% endblock%}
+
+{% block title %}{{property.propertyTitle}}{% endblock %}
+
+{% block activeProperty %}active{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid detail px-5">
+    {% if user.is_authenticated and user.is_active %}
+        <div class="text-left m-3">
+            <a href="{% url 'accounts:updateProfile' user.username %}" class="m-1 btn btn-dark"> <i class="fas fa-pencil-alt px-2"></i> Update Profile </a>
+            <a href="{% url 'accounts:changePassword' %}" class="m-1 btn btn-dark"> <i class="fas fa-pencil-alt px-2"></i> Change Password </a>
+        </div>
+    {% endif %}
+    <div class="row my-5">
+        <div class="col-lg-6">
+            <div>
+                <h2>{{ profile }}</h2>
+            </div>
+            <div>
+                <ul>
+                    <li><span class="heading">username: </span>  {{user.username}}</li>
+                    <li><span class="heading">email ID:</span>  {{user.email}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
